@@ -17,6 +17,7 @@ Client–Server là mô hình giao tiếp trong đó:
 - Ngược lại, ***Server*** là hệ thống hoặc tiến trình luôn chạy để lắng nghe request, xử lý chúng và gửi response (như dữ liệu, tài nguyên, thông báo trạng thái) trở lại client.  
 
 > Mối quan hệ giữa client và server dựa trên cơ chế request-response.
+> 
 > Bất kỳ thiết bị hoặc chương trình đều có thể là client và ngược lại nó đều có thể là server.
 
 ---
@@ -32,7 +33,9 @@ Trong mạng P2P:
 
 ➡️ Điều này tạo ra một hệ thống phi tập trung (decentralized), khác biệt hoàn toàn với mô hình client-server truyền thống, nơi một máy chủ chuyên dụng cung cấp tài nguyên cho nhiều máy khách.
 
+>
 > Mô hình P2P có gì khác so với Client-Server?
+>
 
 | Tiêu chí | Mô hình Client-Server (Máy Khách - Máy Chủ) | Mô hình P2P (Ngành Hàng) |
 | -------- | ------------------------------------------- | ------------------------ |
