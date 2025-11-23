@@ -1,10 +1,11 @@
 # NETWORKING BASIC
 
-## 1. Các nội dung mà ta sẽ tìm hiểu:
+## 1. Các nội dung chính:
 
 | CHỦ ĐỀ | MỤC TIÊU |
 | -------- | -------- | 
-| Clients và Server  | Giải thích vai trò giữa máy chủ và máy khách trong mạng máy tính. | 
+| Clients và Server  | Giải thích khái niệm, vai trò giữa máy chủ và máy khách trong mạng máy tính. |
+| Peer To Peer (P2P)  | Giải thích khái niệm, vai trò mô hình P2P trong mạng máy tính. |
 | Network Components  | Giải thích vai trò về thiết bị cơ sở hạ tầng mạng máy tính.  | 
 | ISP Connectivity Options | Mô tả các tùy chọn kết nối ISP. |
 
@@ -33,9 +34,9 @@ Trong mạng P2P:
 
 ➡️ Điều này tạo ra một hệ thống phi tập trung (decentralized), khác biệt hoàn toàn với mô hình client-server truyền thống, nơi một máy chủ chuyên dụng cung cấp tài nguyên cho nhiều máy khách.
 
->
+---
+
 > Mô hình P2P có gì khác so với Client-Server?
->
 
 | Tiêu chí | Mô hình Client-Server (Máy Khách - Máy Chủ) | Mô hình P2P (Ngành Hàng) |
 | -------- | ------------------------------------------- | ------------------------ |
