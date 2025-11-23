@@ -36,7 +36,7 @@ Trong mạng P2P:
 
 | Tiêu chí | Mô hình Client-Server (Máy Khách - Máy Chủ) | Mô hình P2P (Ngành Hàng) |
 | -------- | ------------------------------------------- | ------------------------ |
-| Kiến trúc,Tập trung (Centralized),Phi tập trung (Decentralized) |
+| Kiến trúc | Tập trung (Centralized) | Phi tập trung (Decentralized) |
 | Vai trò | Có sự phân biệt rõ ràng: Server cung cấp dịch vụ/tài nguyên; Client yêu cầu dịch vụ. | Tất cả các máy (Peer/Node) đều ngang hàng. Mỗi Peer vừa là Client (yêu cầu) vừa là Server (cung cấp). |
 | Lưu trữ | Tập trung trên máy chủ. | Phân tán trên các máy ngang hàng. |
 | Luồng dữ liệu | Client gửi yêu cầu tới Server. Server xử lý và trả lời về Client. (Client ↔ Server) | Dữ liệu truyền trực tiếp giữa các Peer. (Peer ↔ Peer) |
