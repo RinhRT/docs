@@ -1,5 +1,7 @@
 # NETWORKING BASIC
 
+---
+
 ## 1. Các nội dung chính:
 
 | CHỦ ĐỀ | MỤC TIÊU |
@@ -8,6 +10,8 @@
 | Peer To Peer (P2P)  | Giải thích khái niệm, vai trò mô hình P2P trong mạng máy tính. |
 | Network Components  | Giải thích vai trò về thiết bị cơ sở hạ tầng mạng máy tính.  | 
 | ISP Connectivity Options | Mô tả các tùy chọn kết nối ISP. |
+
+---
 
 ## 2. Clients and Server
 
@@ -50,6 +54,8 @@ Trong mạng P2P:
 | Chi phí | "Cao. Cần đầu tư vào Server mạnh, phần mềm và quản trị viên chuyên nghiệp." | Thấp. Tận dụng tài nguyên máy tính có sẵn. |
 | Ứng dụng điển hình | "Web, Email (Gmail/Outlook), Ngân hàng trực tuyến, Cơ sở dữ liệu công ty." | "Chia sẻ tệp (BitTorrent), Tiền điện tử (Blockchain), Một số ứng dụng VoIP." |
 
+---
+
 ## 4. Network Components
 
 Cơ sở hạ tần mạng (The network infrastructure) bao gồm ba thành phần chính:
@@ -58,5 +64,3 @@ Cơ sở hạ tần mạng (The network infrastructure) bao gồm ba thành ph�
 - Network media
 
 ![Network infrastructure](../../images/Screenshot%202025-11-25%20151858.png)
-
-### 4.1 End devices
