@@ -49,3 +49,14 @@ Trong mạng P2P:
 | Bảo mật | "Tốt hơn. Bảo mật, xác thực và quản lý tập trung tại Server." | Kém hơn. Khó kiểm soát và đảm bảo an ninh trên từng Peer. |
 | Chi phí | "Cao. Cần đầu tư vào Server mạnh, phần mềm và quản trị viên chuyên nghiệp." | Thấp. Tận dụng tài nguyên máy tính có sẵn. |
 | Ứng dụng điển hình | "Web, Email (Gmail/Outlook), Ngân hàng trực tuyến, Cơ sở dữ liệu công ty." | "Chia sẻ tệp (BitTorrent), Tiền điện tử (Blockchain), Một số ứng dụng VoIP." |
+
+## 4. Network Components
+
+Cơ sở hạ tần mạng (The network infrastructure) bao gồm ba thành phần chính:
+- End devices
+- Intermediate devices
+- Network media
+
+:-: ![Network infrastructure](../../images/Screenshot%202025-11-25%20151858.png)
+
+### 4.1 End devices
