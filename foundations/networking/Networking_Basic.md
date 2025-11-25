@@ -57,6 +57,6 @@ Cơ sở hạ tần mạng (The network infrastructure) bao gồm ba thành ph�
 - Intermediate devices
 - Network media
 
-:-: ![Network infrastructure](../../images/Screenshot%202025-11-25%20151858.png)
+![Network infrastructure](../../images/Screenshot%202025-11-25%20151858.png)
 
 ### 4.1 End devices
