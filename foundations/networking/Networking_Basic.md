@@ -174,6 +174,7 @@ Các kết nối của ISP, bao gồm:
     - Nhược điểm:
         1. Tốc độ phụ thuộc vào chất lượng sóng.
         2. Bị giới hạn data → vượt gói cước sẽ bị tính phí.
+
 ➡️ Rất hữu ích cho người không có cáp/wifi hoặc cần Internet di động.
 
 2. Satellite Internet
@@ -183,6 +184,7 @@ Các kết nối của ISP, bao gồm:
     - Nhược điểm:
         1. Độ trễ (latency) cao.
         2. Chi phí thiết bị và lắp đặt ban đầu cao.
+      
 ➡️ Giải pháp hữu ích nếu không có DSL, Cable hay Fiber.
 
 3. Dial-up Internet (lỗi thời nhưng vẫn có nơi dùng)
@@ -190,4 +192,5 @@ Các kết nối của ISP, bao gồm:
     - Tốc độ rất thấp (56 Kbps).
     - Ưu điểm: rẻ, chỉ cần đường dây điện thoại cơ bản.
     - Nhược điểm: quá chậm, không dùng được cho ứng dụng hiện đại.
+
 ➡️ Chỉ nên sử dụng khi không còn lựa chọn nào khác.
