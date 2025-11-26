@@ -17,9 +17,7 @@ Client–Server là mô hình giao tiếp trong đó:
 - ***Client*** là bất kỳ thiết bị hoặc chương trình nào gửi request đến một dịch vụ để yêu cầu tài nguyên hoặc xử lý dữ liệu.
 - Ngược lại, ***Server*** là hệ thống hoặc tiến trình luôn chạy để lắng nghe request, xử lý chúng và gửi response (như dữ liệu, tài nguyên, thông báo trạng thái) trở lại client.  
 
-> Mối quan hệ giữa client và server dựa trên cơ chế request-response.
-> 
-> Bất kỳ thiết bị hoặc chương trình đều có thể là client và ngược lại nó đều có thể là server.
+> Một thiết bị có thể vừa làm client trong ngữ cảnh này và làm server trong ngữ cảnh khác.
 
 ---
 
@@ -38,116 +36,60 @@ Trong mạng P2P:
 
 > Mô hình P2P có gì khác so với Client-Server?
 
-| Tiêu chí | Mô hình Client-Server (Máy Khách - Máy Chủ) | Mô hình P2P (Ngành Hàng) |
-| -------- | ------------------------------------------- | ------------------------ |
-| Kiến trúc | Tập trung (Centralized) | Phi tập trung (Decentralized) |
-| Vai trò | Có sự phân biệt rõ ràng: Server cung cấp dịch vụ/tài nguyên; Client yêu cầu dịch vụ. | Tất cả các máy (Peer/Node) đều ngang hàng. Mỗi Peer vừa là Client (yêu cầu) vừa là Server (cung cấp). |
-| Lưu trữ | Tập trung trên máy chủ. | Phân tán trên các máy ngang hàng. |
-| Luồng dữ liệu | Client gửi yêu cầu tới Server. Server xử lý và trả lời về Client. (Client ↔ Server) | Dữ liệu truyền trực tiếp giữa các Peer. (Peer ↔ Peer) |
-| Điểm lỗi | "Dễ bị lỗi đơn điểm (Single Point of Failure). Nếu Server lỗi, toàn bộ hệ thống tê liệt." | "Khả năng chịu lỗi cao. Nếu một Peer lỗi, mạng vẫn hoạt động nhờ tài nguyên phân tán." |
-| Khả năng mở rộng (Scalability) | "Hạn chế. Khi số lượng Client tăng, Server dễ bị quá tải (Bottleneck)." | "Tốt hơn trong việc chia sẻ tài nguyên. Càng nhiều Peer tham gia, khả năng cung cấp càng mạnh." |
-| Bảo mật | "Tốt hơn. Bảo mật, xác thực và quản lý tập trung tại Server." | Kém hơn. Khó kiểm soát và đảm bảo an ninh trên từng Peer. |
-| Chi phí | "Cao. Cần đầu tư vào Server mạnh, phần mềm và quản trị viên chuyên nghiệp." | Thấp. Tận dụng tài nguyên máy tính có sẵn. |
-| Ứng dụng điển hình | "Web, Email (Gmail/Outlook), Ngân hàng trực tuyến, Cơ sở dữ liệu công ty." | "Chia sẻ tệp (BitTorrent), Tiền điện tử (Blockchain), Một số ứng dụng VoIP." |
+| Tiêu chí         | Client–Server             | P2P                               |
+| ---------------- | ------------------------- | --------------------------------- |
+| Kiến trúc        | Tập trung                 | Phi tập trung                     |
+| Vai trò          | Tách biệt Client ↔ Server | Peer vừa là Client, vừa là Server |
+| Lưu trữ          | Tập trung                 | Phân tán                          |
+| Luồng dữ liệu    | Client ↔ Server           | Peer ↔ Peer                       |
+| Điểm lỗi         | Dễ bị lỗi đơn điểm        | Khả năng chịu lỗi tốt             |
+| Khả năng mở rộng | Thấp (server dễ quá tải)  | Tốt (thêm peer thì mạnh hơn)      |
+| Bảo mật          | Dễ kiểm soát              | Khó kiểm soát                     |
+| Chi phí          | Cao (cần server)          | Thấp (tận dụng máy người dùng)    |
+| Ví dụ            | Web, Email, Ngân hàng     | BitTorrent, Blockchain            |
 
 ## 4. Network Components
 
 Cơ sở hạ tần mạng (The network infrastructure) bao gồm ba thành phần chính:
-1. End devices
-2. Intermediate devices
-3. Network media
+1. End Devices – thiết bị đầu cuối dùng bởi người dùng.
+2. Intermediate Devices – thiết bị trung gian quản lý, định tuyến, bảo vệ mạng.
+3. Network Media – môi trường truyền dẫn (dây đồng, cáp quang, sóng vô tuyến).
 
 ![Network infrastructure](../../images/Screenshot%202025-11-25%20151858.png)
 
 ### 4.1 Network Infrastructure (Thiết bị hạ tầng mạng)
 
-Đây là những thiết bị cốt lõi giúp kết nối, định tuyến, quản lý và bảo vệ lưu lượng trong mạng.
+***Thiết bị hạ tầng mạng*** bao gồm các thành **phần vật lý** và **logic** tạo nên một mạng máy tính, như router, switch, modem, điểm truy cập (Access Point), cùng với các thành phần như máy chủ, tường lửa (firewall), cáp mạng và các phần mềm quản lý. Những thiết bị này kết nối với nhau để truyền tải, chia sẻ dữ liệu và cho phép các thiết bị giao tiếp, truy cập internet một cách ổn định và bảo mật. 
 
-1. Hub (Bộ chia mạng – lớp 1 OSI)
-    - Thiết bị cơ bản nhất.
-    - Không thông minh, không hiểu địa chỉ MAC.
-    - Khi nhận được dữ liệu → broadcast ra tất cả các cổng.
-    - Nhược điểm: dễ gây xung đột (collision), tốc độ chậm.
-    - Hub đã lỗi thời trong các mạng hiện đại.
+>
+> Đây là những thiết bị cốt lõi giúp kết nối, định tuyến, quản lý và bảo vệ lưu lượng trong mạng.
+>
+> Những thiết bị này kết nối với nhau để truyền tải, chia sẻ dữ liệu và cho phép các thiết bị giao tiếp, truy cập internet một cách ổn định và bảo mật.
+>
 
-2. Switch (Bộ chuyển mạch – lớp 2 OSI)
-    - Thiết bị phổ biến nhất trong mạng LAN.
-    - Hiểu và sử dụng địa chỉ MAC để gửi đúng gói tin đến đúng thiết bị.
-    - Giảm xung đột, cải thiện tốc độ mạng.
-    - Hỗ trợ VLAN, QoS, Spanning Tree…
-    - Switch = Phiên bản thông minh hơn và hiện đại hơn nhiều so với Hub.
+---
 
-3. Router (Bộ định tuyến – lớp 3 OSI)
-    - Giúp kết nối nhiều mạng khác nhau (LAN ↔ WAN, LAN ↔ Internet).
-    - Hiểu địa chỉ IP, định tuyến dựa trên các bảng routing.
-    - Có thể cấp IP qua DHCP, NAT/PAT, firewall cơ bản.
-    - Router giúp đưa máy tính của bạn ra Internet.
-
-4. Firewall (Tường lửa – lớp 3/4/7)
-    - Bảo vệ mạng bằng cách cho phép hoặc chặn lưu lượng theo:
-    - IP, port, URL, ứng dụng…
-    - Firewall có hai dạng:
-    - Hardware Firewall (thiết bị phần cứng)
-    - Software Firewall (chạy trong hệ điều hành)
-
-5. Access Point (AP – Điểm truy cập WiFi)
-    - Tạo mạng không dây (WiFi) cho các thiết bị kết nối.
-    - Có hai loại:
-        - Standalone AP (hoạt động độc lập).
-        - Controller-based AP (điều khiển tập trung).
-
-6. Modem
-    - Chuyển đổi tín hiệu số (digital) ↔ tín hiệu analog từ nhà mạng (ISP).
-    - Ví dụ:
-        - Modem cáp.
-        - Modem quang (ONT – Optical Network Terminal).
-        - Hầu hết modem của ISP tích hợp luôn Router & WiFi.
-
-7. Load Balancer
-    - Phân phối lưu lượng giữa nhiều server.
-    - Giúp giảm tải, tăng khả năng chịu lỗi.
-
-8. Network Server (Trong hạ tầng)
-- Các máy chủ chuyên dụng như:
-    - DHCP Server (cấp IP)
-    - DNS Server (phân giải tên miền)
-    - Authentication Server (xác thực người dùng)
-    - File Server (lưu trữ)
+| Thiết bị      | Vai trò chính           | Lớp OSI |
+| ------------- | ----------------------- | ------- |
+| Hub           | Broadcast tín hiệu      | 1       |
+| Switch        | Chuyển mạch theo MAC    | 2       |
+| Router        | Định tuyến theo IP      | 3       |
+| Firewall      | Lọc/bảo vệ lưu lượng    | 3–7     |
+| Access Point  | Tạo WiFi                | 2       |
+| Modem         | Chuyển đổi tín hiệu ISP | 1       |
+| Load Balancer | Phân phối tải           | 4–7     |
 
 ### 4.2 End Devices (Thiết bị đầu cuối)
 
 End devices là các thiết bị do người dùng trực tiếp sử dụng hoặc là thiết bị cuối cùng xử lý dữ liệu.
 
-1. Máy tính cá nhân (PC/Laptop)
-    - Thiết bị phổ biến nhất dùng để truy cập mạng.
+---
 
-2. Điện thoại thông minh (Smartphone)
-    - Kết nối WiFi hoặc 4G/5G.
-
-3. Máy chủ (Server)
-Cung cấp dịch vụ:
-    - Web
-    - Database
-    - Email
-    - Cloud
-    - Authentication
-    - Máy chủ vừa có thể là thiết bị hạ tầng vừa là thiết bị đầu cuối tùy ngữ cảnh.
-
-4. Máy in mạng (Network Printer)
-    - Cho phép in qua LAN hoặc WiFi.
-
-5. IoT Devices (Thiết bị IoT)
-- Ví dụ:
-    - Camera an ninh
-    - Cảm biến
-    - Smart TV
-    - Smart home devices (đèn, ổ cắm, khóa cửa…)
-
-6. VoIP Phones (Điện thoại IP)
-    - Sử dụng mạng để gọi điện thay vì đường dây thoại truyền thống.
-
-7. Access Terminal / Thin Client
-    - Dùng trong hệ thống doanh nghiệp, siêu thị, ngân hàng…
+| Nhóm               | Ví dụ              | Chức năng                    |
+| ------------------ | ------------------ | ---------------------------- |
+| Người dùng         | Laptop, điện thoại | Truy cập mạng, chạy ứng dụng |
+| IoT                | ESP32, camera      | Gửi/nhận dữ liệu cảm biến    |
+| Thiết bị văn phòng | Máy in, máy scan   | Nhận job từ mạng             |
 
 ### 4.3 Network Media (Phương tiện truyền dẫn)
 
@@ -173,3 +115,79 @@ Cung cấp dịch vụ:
 
 4. Coaxial Cable (Cáp đồng trục)
     - Dùng trong truyền hình cáp và Internet cáp (DOCSIS).
+
+## 5. ISP Connectivity Options
+
+### 5.1 ISP Services (ISPs)
+
+ISP (Internet Service Provider) là ***nhà cung cấp dịch vụ Internet***, chịu trách nhiệm:
+- Cung cấp kết nối Internet cho người dùng và doanh nghiệp.
+- Cấp phát thiết bị mạng cơ bản (Modem/ONT).
+- Quản lý băng thông, hỗ trợ kỹ thuật, bảo trì đường truyền.
+- Kết nối hệ thống mạng khu vực của họ với Internet toàn cầu.
+➡️ Hiểu đơn giản: ISP là cánh cổng đưa thiết bị của bạn (PC, điện thoại, router…) ra thế giới Internet.
+
+### 5.2 ISP Connections
+
+Các kết nối của ISP, bao gồm:
+
+| Loại Kết Nối           | Công Nghệ      | Tốc Độ                | Độ Ổn Định                     | Phù Hợp Nhất                              |
+| ---------------------- | -------------- | --------------------- | ------------------------------ | ----------------------------------------- |
+| **Fiber Optic (FTTH)** | Cáp quang      | Rất nhanh (≈1 Gbps+)  | Rất ổn định, trễ thấp          | Gia đình, doanh nghiệp, gaming, streaming |
+| **Cable Internet**     | Cáp đồng trục  | Nhanh (50–500 Mbps)   | Ổn định vừa, chậm giờ cao điểm | Nhà có sẵn truyền hình cáp                |
+| **DSL / ADSL / VDSL**  | Dây điện thoại | Thấp–TB (24–100 Mbps) | Ổn định thấp khi xa tổng đài   | Nông thôn, nhu cầu cơ bản                 |
+| **Cellular (4G/5G)**   | Sóng di động   | 4G: TB / 5G: nhanh    | Dao động theo tín hiệu         | Di động, dự phòng, nơi không có cáp       |
+| **Satellite Internet** | Vệ tinh        | TB (25–100 Mbps)      | Trễ rất cao                    | Vùng hẻo lánh, hải đảo                    |
+
+### 5.3 Cable and DSL Connections
+
+1. Cable Internet:
+    - Sử dụng cáp coaxial giống hệ thống truyền hình cáp.
+    - Tốc độ: trung bình đến cao (100 Mbps – lên đến 1 Gbps).
+    - Dễ bị ảnh hưởng bởi số lượng người dùng trong khu vực (shared bandwidth).
+
+2. DSL (Digital Subscriber Line):
+    - Chạy trên dây điện thoại xoắn đôi (twisted pair).
+    - Không ảnh hưởng đến việc nghe/gọi điện thoại.
+    - Tốc độ phụ thuộc vào khoảng cách tới trạm ISP.
+    - Các chuẩn:
+        - ADSL: tải xuống nhanh hơn tải lên.
+        - VDSL: nhanh hơn ADSL, phổ biến tại các khu dân cư.
+
+> So sánh kết nối Cable và DSL
+
+| Tiêu chí      | Cable                        | DSL                           |
+| ------------- | ---------------------------- | ----------------------------- |
+| Loại cáp      | Coaxial                      | Dây điện thoại                |
+| Tốc độ        | Cao (tới 1 Gbps)             | Thấp – Trung bình             |
+| Ổn định       | Phụ thuộc người dùng khu vực | Phụ thuộc khoảng cách tới ISP |
+| Giá           | Trung bình                   | Rẻ                            |
+| Tính phổ biến | Rất phổ biến                 | Giảm dần                      |
+
+### 5.4 Additional Connectivity Options
+
+1. Cellular Internet (3G/4G/5G)
+    - Sử dụng mạng di động để truy cập Internet.
+    - Ưu điểm:
+        - Có thể dùng mọi nơi có sóng di động.
+        - Linh hoạt, tiện dụng cho người hay di chuyển.
+    - Nhược điểm:
+        1. Tốc độ phụ thuộc vào chất lượng sóng.
+        2. Bị giới hạn data → vượt gói cước sẽ bị tính phí.
+➡️ Rất hữu ích cho người không có cáp/wifi hoặc cần Internet di động.
+
+2. Satellite Internet
+    - Kết nối thông qua vệ tinh → phù hợp cho vùng sâu, vùng xa.
+    - Yêu cầu: cần tầm nhìn trực tiếp lên bầu trời (không bị che bởi cây, nhà…).
+    - Tốc độ: khá tốt, phụ thuộc gói cước.
+    - Nhược điểm:
+        1. Độ trễ (latency) cao.
+        2. Chi phí thiết bị và lắp đặt ban đầu cao.
+➡️ Giải pháp hữu ích nếu không có DSL, Cable hay Fiber.
+
+3. Dial-up Internet (lỗi thời nhưng vẫn có nơi dùng)
+    - Dùng modem và đường dây điện thoại analog.
+    - Tốc độ rất thấp (56 Kbps).
+    - Ưu điểm: rẻ, chỉ cần đường dây điện thoại cơ bản.
+    - Nhược điểm: quá chậm, không dùng được cho ứng dụng hiện đại.
+➡️ Chỉ nên sử dụng khi không còn lựa chọn nào khác.
