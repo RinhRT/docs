@@ -1,24 +1,18 @@
-# DETECT SQL INJECTION VULNERABILITIES
+# ***DETECT SQL INJECTION VULNERABILITIES***
 
-## Mục lục
+## Làm như thế nào để phát hiện lỗ hổng SQL Injection?
 
-- [1. Làm như thế nào để phát hiện lỗ hổng SQL Injection?](#1-làm-như-thế-nào-để-phát-hiện-lỗ-hổng-sql-injection)
+Quá trình dò tìm SQLi thường bắt đầu bằng việc cố tình gửi các dữ liệu dị thường để xem ứng dụng xử lý chúng như thế nào. Dưới đây là 4 phương pháp kiểm thử thủ công phổ biến nhất:
 
-## 1. Làm như thế nào để phát hiện lỗ hổng SQL Injection?
-
-Việc kiểm tra lỗ hổng này đôi khi rất dễ dàng. Đôi khi ta chỉ cần nhập **'** hoặc **"** vào ô nhập dữ liệu. Sau đấy chờ phản hồi từ phía ứng dụng. Nếu không trả về bất kỳ phản hồi hay thông báo, ta ngầm hiểu lỗi SQL Injection tồn tại ở điểm đấy. 
-
-Khái quát quá trình kiểm thử thủ công sẽ bao gồm:
-
-- Nhập ký tự ***nháy đơn*** **'** hoặc ***nháy kép*** **"** : Đây là cách kiểm tra đơn giản nhất. Nếu ứng dụng không sử lý kỹ, nó sẽ làm phá vỡ câu lệnh SQL.
-  > Ví dụ như "http://urldemo321.xyz/?id=123"
+- Nhập ký tự ***nháy đơn*** **'** hoặc ***nháy kép*** **"** : Đây là cách kiểm tra đơn giản nhất. **Dấu hiệu nhận biết:** Nếu trang web văng ra thông báo lỗi cơ sở dữ liệu (ví dụ: *You have an error in your SQL syntax...*) hoặc giao diện bị vỡ một cách bất thường $\rightarrow$ Khả năng cao có lỗi.
+  > Ví dụ như cố tình chèn nháy đơn vào url `http://urldemo321.xyz/?id=123'`
   
   ``` php
   //Mã nguồn máy chủ:
 
   $id = $_GET['id'];
   // Lấy trực tiếp $id từ URL ghép vào chuỗi SQL
-  $sql = "SELECT username, email FROM users WHERE id = '$id'"; 
+  $sql = "SELECT username, email FROM users WHERE id = '$id'"; // Dấu nháy đơn làm thay đổi cấu trúc SQL ở đây.
   $result = $conn->query($sql);
 
   if (!$result) {
@@ -26,14 +20,14 @@ Khái quát quá trình kiểm thử thủ công sẽ bao gồm:
     die("Lỗi truy vấn: " . $conn->error); 
   }
   ```
-  > Cách thực hiện: chèn thêm dấu nháy đơn vào url. 
-  >
-  > Ta được url như thế này: http://urldemo321.xyz/?id=123%27
 
 ---
 
 - Thử cú pháp SQL thay đổi giá trị.
-- Thử điều kiện boolean (**or 1=1** hoặc **or 1=2**), và quan sát sự khác biệt trong phản hồi của ứng dụng.
+- Thử điều kiện ***Boolean (Boolean-Based Blind SQLi)***
+  -  Thường dùng để test form đăng nhập hoặc các chức năng tìm kiếm khi web che giấu thông báo lỗi. Ta tiêm các biểu thức luôn ĐÚNG (như OR 1=1) hoặc luôn SAI (như OR 1=2).
+  - Dấu hiệu nhận biết: Quan sát sự khác biệt của giao diện ứng dụng giữa trường hợp truy vấn Đúng và Sai (ví dụ: 1=1 thì đăng nhập được, 1=2 thì báo sai mật khẩu).
+
   > Ví dụ như "http://urldemo321.xyz/login"
   
   ``` php
@@ -51,15 +45,19 @@ Khái quát quá trình kiểm thử thủ công sẽ bao gồm:
     echo "Sai tài khoản hoặc mật khẩu.";
   }
   ```
+  
+  Cách thức thực hiện như sau:
 
   ``` powershell
   curl -X POST http://urldemo321.xyz/login --data-urlencode "username=administrator ' OR 1=1 --" -d "password=123456789" -v
   ```
-  > **-X POST**: Đây là hành động gửi dữ liệu. (-d cũng ngầm hiểu là POST).
+  > **-X POST** : Đây là hành động gửi dữ liệu. (-d cũng ngầm hiểu là POST).
   >
-  > **--data-urlencode**: Đảm bảo payload SQLi của bạn được gói gém cẩn thận, không bị vỡ định dạng khi đi qua môi trường mạng.
+  > **--data-urlencode** : Đảm bảo payload SQLi của bạn được gói gém cẩn thận, không bị vỡ định dạng khi đi qua môi trường mạng.
   >
-  > **-v (Verbose)**: Hiện thị đầy đủ thông tin, dành cho debug.
+  > **--** : Ký tự comment (tùy CSDL, có thể là # hoặc /*), dùng để vô hiệu hóa phần kiểm tra mật khẩu phía sau trong mã nguồn.
+  >
+  > **-v (Verbose)** : Hiện thị đầy đủ thông tin, dành cho debug.
 
 ---
 
@@ -81,7 +79,7 @@ Khái quát quá trình kiểm thử thủ công sẽ bao gồm:
 
   - Cách 1: dùng curl giống như trường hợp 2
   ``` powershell
-  curl -X POST http://urldemo321.xyz/subscribers --data-urlencode "email=test@gmail.com' OR SLEEP(5) --" -v
+  time curl -X POST [http://urldemo321.xyz/subscribers](http://urldemo321.xyz/subscribers) --data-urlencode "email=test@gmail.com' OR SLEEP(5) -- " -v
   ```
 
   - Cách 2: dùng sqlmap
@@ -93,3 +91,9 @@ Khái quát quá trình kiểm thử thủ công sẽ bao gồm:
 ---
 
 - Thử OAST ***(Out-of-band Application Security Testing)***: Kỹ thuật này dùng cho các ***trường hợp đặc biệt "mù"*** (không báo lỗi, không đổi nội dung, không phản hồi chậm). Bạn chèn một đoạn mã ép cơ sở dữ liệu tự động tạo một kết nối mạng ra bên ngoài (ví dụ: truy vấn DNS đến một máy chủ do bạn kiểm soát). Nếu máy chủ của bạn nhận được tín hiệu kết nối, nghĩa là SQLi đã được thực thi thành công.
+
+---
+
+<p align="right" style="padding-top: 60px">
+    <a href="./03-SQL_injection_in_different_parts_of_the_query.md">Bài tiếp theo: Tiêm mã vào các lệnh truy vấn SQL</a>
+</p>
