@@ -63,7 +63,7 @@ Tuy nhiên, lỗ hổng SQL Injection có thể **xảy ra ở bất kỳ vị t
     - Hậu quả: Đoạn phía sau bị vô hiệu hóa bởi dấu `--` . Thay vì lấy dữ liệu sản phẩm, ứng dụng sẽ in ra toàn bộ mật khẩu của bảng users.
 
 ### 4. Trong câu lệnh ***SELECT*** (Mệnh đề ORDER BY)
-- Trường hợp này rất nguy hiểm và phổ biến ở các bảng dữ liệu cho phép nhấp vào tiêu đề cột để sắp xếp (Sort A-Z). Tại vị trí ORDER BY, bạn không thể dùng các lệnh cơ bản như UNION SELECT.
+- Trường hợp này rất nguy hiểm và phổ biến ở các bảng dữ liệu cho phép nhấp vào tiêu đề cột để sắp xếp (Sort A-Z). Tại vị trí `ORDER BY`, bạn không thể dùng các lệnh cơ bản như `UNION SELECT`.
 
     Ví dụ như:
     ``` sql
